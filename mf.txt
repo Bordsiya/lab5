@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: Main
+Class-Path: lib/jackson-annotations-2.12.1.jar lib/jackson-core-2.12.1.jar lib/jackson-databind-2.12.1.jar lib/jackson-datatype-jsr310-2.12.1.jar lib/jackson-jr-all-2.12.1.jar
+

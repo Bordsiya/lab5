@@ -14,4 +14,21 @@ public enum MeleeWeapon {
         }
     }
 
+    @Override
+    public String toString(){
+        switch (this){
+            case CHAIN_AXE:
+                return "CHAIN_AXE";
+            case MANREAPER:
+                return "MANREAPER";
+            case LIGHTING_CLAW:
+                return "LIGHTING_CLAW";
+            case POWER_BLADE:
+                return "POWER_BLADE";
+            case POWER_FIST:
+                return "POWER_FIST";
+        }
+        throw new IllegalArgumentException();
+    }
+
 }

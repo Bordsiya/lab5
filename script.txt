@@ -10,10 +10,10 @@ add
 CHAIN_AXE
 Глава 55
 Мир Драконов
-execute_script popo.txt
+execute_script script1.txt
 reorder
 print_field_ascending_weapon_type
-update 2
+update 1
 1
 Боба
 1
@@ -31,4 +31,5 @@ CHAIN_AXE
 Алфея
 info
 save
-exit
+remove_by_id 1
+clear

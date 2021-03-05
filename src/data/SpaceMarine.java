@@ -7,6 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class SpaceMarine implements Comparable<SpaceMarine>{
     private Integer id = null;
@@ -100,7 +101,7 @@ public class SpaceMarine implements Comparable<SpaceMarine>{
         this.coordinates.setY(y);
     }
 
-    public void setHealth(float health){
+    public void setHealth(Float health){
         this.health = health;
     }
 
@@ -130,7 +131,9 @@ public class SpaceMarine implements Comparable<SpaceMarine>{
 
     @Override
     public int compareTo(SpaceMarine o) {
-        return this.getName().compareTo(o.getName());
+        if(this.getName().length() > o.getName().length()) return 1;
+        else if(this.getName().length() == o.getName().length()) return 0;
+        else return -1;
     }
 
     @Override
@@ -139,8 +142,8 @@ public class SpaceMarine implements Comparable<SpaceMarine>{
         if (o == null || this.getClass() != o.getClass()) return false;
         SpaceMarine spaceMarine = (SpaceMarine) o;
         if (this.hashCode() != spaceMarine.hashCode()) return false;
-        return (this.getName().equals(spaceMarine.getName()) && this.getId() == spaceMarine.getId()
-        && this.getCoordinates().equals(spaceMarine.getCoordinates()) && this.getHealth() == spaceMarine.getHealth()
+        return (this.getName().equals(spaceMarine.getName()) && this.getId().equals(spaceMarine.getId())
+        && this.getCoordinates().equals(spaceMarine.getCoordinates()) && this.getHealth().equals(spaceMarine.getHealth())
         && this.getAchievements().equals(spaceMarine.getAchievements()) && this.getWeaponType() == spaceMarine.getWeaponType()
         && this.getMeleeWeapon() == spaceMarine.getMeleeWeapon() && this.getChapter().equals(spaceMarine.getChapter()));
     }
@@ -160,11 +163,18 @@ public class SpaceMarine implements Comparable<SpaceMarine>{
         String res = "Id: " + this.getId() + "\n";
         res += "Название корабля: " + this.getName() + "\n";
         res += "Координаты:\n" + this.getCoordinates().toString();
-        res += "Дата создания: " + this.getCreationDate() + "\n";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        res += "Дата создания: " + this.getCreationDate().format(formatter) + "\n";
         res += "Здоровье: " + this.getHealth() + "\n";
         res += "Достижения: " + this.getAchievements() + "\n";
-        res += "Тип оружия: " + this.getWeaponType() + "\n";
-        res += "Тип оружия ближнего боя: " + this.getMeleeWeapon() + "\n";
+        if(this.getWeaponType() == null){
+            res += "Тип оружия: null\n";
+        }
+        else res += "Тип оружия: " + this.getWeaponType().toString() + "\n";
+        if(this.getMeleeWeapon() == null){
+            res += "Тип оружия ближнего боя: null\n";
+        }
+        else res += "Тип оружия ближнего боя: " + this.getMeleeWeapon().toString() + "\n";
         res += "Глава:\n" + this.getChapter().toString();
         return res;
     }

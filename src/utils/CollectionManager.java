@@ -108,7 +108,7 @@ public class CollectionManager {
     public boolean removeElementById(Integer id){
         SpaceMarine spaceMarine = searchById(id);
         if (spaceMarine != null){
-            stack.remove(spaceMarine);
+            this.getCollection().remove(spaceMarine);
             return true;
         }
         else{
@@ -151,27 +151,28 @@ public class CollectionManager {
     public void ascendWeaponType(){
         WeaponTypeComparator cmp = new WeaponTypeComparator();
         ArrayList<SpaceMarine> list = new ArrayList<>(this.getCollection());
-        Collections.reverse(list);
         list.sort(cmp);
         Stack<SpaceMarine> newStack = new Stack<>();
-        Collections.reverse(list);
         newStack.addAll(list);
         printWeaponTypes(newStack);
     }
 
     public void printWeaponTypes(Stack <SpaceMarine> stack){
         for(SpaceMarine sm : stack){
-            System.out.println(sm.getWeaponType().toString());
+            if(sm.getWeaponType() == null){
+                System.out.println("null");
+            }
+            else{
+                System.out.println(sm.getWeaponType().toString());
+            }
         }
     }
 
     public void descendAchievements(){
         AchievementsComparator cmp = new AchievementsComparator();
         ArrayList<SpaceMarine> list = new ArrayList<>(this.getCollection());
-        Collections.reverse(list);
         list.sort(cmp);
         Stack<SpaceMarine> newStack = new Stack<>();
-        Collections.reverse(list);
         newStack.addAll(list);
         printAchievements(newStack);
     }
@@ -185,15 +186,15 @@ public class CollectionManager {
     public boolean removeGreater(SpaceMarine spaceMarine){
         spaceMarine.setId(getNewId());
         spaceMarine.setCreationDate(LocalDateTime.now());
-        Stack<SpaceMarine> bufStack = this.getCollection();
-        if(!this.getCollection().contains(spaceMarine)){
-            bufStack.push(spaceMarine);
+        ArrayList<SpaceMarine> spaceMarines = new ArrayList<>(this.getCollection());
+        if(!spaceMarines.contains(spaceMarine)){
+            spaceMarines.add(spaceMarine);
         }
-        Collections.sort(bufStack);
+        Collections.sort(spaceMarines);
         boolean flag = false;
         boolean checkpoint = false;
-        for (SpaceMarine sm : bufStack){
-            if (sm.equals(spaceMarine)){
+        for (SpaceMarine sm : spaceMarines){
+            if (sm.getName().length() == spaceMarine.getName().length()){
                 flag = true;
             }
             else if (flag){
@@ -207,15 +208,15 @@ public class CollectionManager {
     public boolean removeLower(SpaceMarine spaceMarine){
         spaceMarine.setId(getNewId());
         spaceMarine.setCreationDate(LocalDateTime.now());
-        Stack<SpaceMarine> bufStack = this.getCollection();
-        if(!this.getCollection().contains(spaceMarine)){
-            bufStack.push(spaceMarine);
+        ArrayList<SpaceMarine> spaceMarines = new ArrayList<>(this.getCollection());
+        if(!spaceMarines.contains(spaceMarine)){
+            spaceMarines.add(spaceMarine);
         }
-        Collections.sort(bufStack);
+        Collections.sort(spaceMarines);
         boolean flag = true;
         boolean checkpoint = false;
-        for (SpaceMarine sm : bufStack){
-            if (sm.equals(spaceMarine)){
+        for (SpaceMarine sm : spaceMarines){
+            if (sm.getName().length() == spaceMarine.getName().length()){
                 flag = false;
             }
             else if (flag){

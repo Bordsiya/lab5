@@ -6,16 +6,54 @@ import exceptions.RecursionScriptException;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Working environment for command executing
+ * @author NastyaBordun
+ * @version 1.1
+ */
+
 public class Console {
+    /**
+     * Variable to identify the need for further work
+     */
     private boolean work;
+    /**
+     * Buffered I/O stream
+     */
     private BufferedInputStream bf;
+    /**
+     * Reader for string reading support {@link BufferedReader#readLine()}
+     */
     private BufferedReader r;
+    /**
+     * Class that supports different operations over the collection {@link CollectionManager}
+     */
     private CollectionManager collectionManager;
+    /**
+     * Class for command announcement {@link CommandManager}
+     */
     private CommandManager commandManager;
+    /**
+     * Base for all commands {@link CommandBase}
+     */
     private CommandBase commandBase;
+    /**
+     * Class providing getting correct information from the user {@link AskManager}
+     */
     private AskManager askManager;
+    /**
+     * Class for files uploading {@link FileManager}
+     */
     private FileManager fileManager;
 
+    /**
+     * Constructor - new working environment creating
+     * @see FileManager#uploadEnvPath()
+     * @see FileManager#uploadFile()
+     * @see FileManager#checkRWProperties()
+     * @see FileManager#uploadPath()
+     * @see Console#interactiveMode()
+     */
     public Console(){
         this.bf = new BufferedInputStream(System.in);
         this.r = new BufferedReader(new InputStreamReader(bf, StandardCharsets.UTF_8));
@@ -56,6 +94,10 @@ public class Console {
 
     }
 
+    /**
+     * Work in the interactive mode
+     * @see Console#chooseCommand(BufferedReader, String, boolean)
+     */
     public void interactiveMode(){
         while(this.work){
             try{
@@ -74,6 +116,16 @@ public class Console {
         }
     }
 
+    /**
+     * Work with a script
+     * @param path path to file passed by chooseCommand method
+     * @return work with script result (0 - error while working; 1 - all good; 2 - program is over)
+     * @see FileManager#uploadScriptPath(String)
+     * @see FileManager#uploadScriptFile()
+     * @see FileManager#checkRProperties()
+     * @see AskManager#toScriptMode(BufferedReader)
+     * @see Console#chooseCommand(BufferedReader, String, boolean)
+     */
     public int scriptMode(String path){
         try{
             FileManager fileManager1 = new FileManager(this.askManager);
@@ -123,6 +175,15 @@ public class Console {
         }
     }
 
+    /**
+     * @param bf needful Reader
+     * @param command command in string representation
+     * @param mode true - interactive mode; false - script mode
+     * @return command result (0 - error while working; 1 - all good; 2 - program is over)
+     * @throws IOException Input/Output exception
+     * @throws IncorrectCommandException non-valid command
+     * @see CommandManager
+     */
     private int chooseCommand(BufferedReader bf, String command, boolean mode) throws IOException, IncorrectCommandException {
         String[] commandArr = command.trim().split(" ", 2);
         if(commandArr.length == 0) throw new IncorrectCommandException("Введена некорректная команда");

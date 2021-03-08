@@ -1,5 +1,11 @@
 package commands;
 
+/**
+ * Base for all commands
+ * @author NastyaBordun
+ * @version 1.1
+ */
+
 public class CommandBase {
 
     public void help(){

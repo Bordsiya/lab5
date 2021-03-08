@@ -4,16 +4,38 @@ import exceptions.ObjectDoesNotExistException;
 import exceptions.WrongAmountOfElementsInCommandException;
 import utils.CollectionManager;
 
+/**
+ * The Removal Command for collection elements with type {@link data.SpaceMarine} by ID
+ * @author NastyaBordun
+ * @version 1.1
+ */
+
 public class RemoveCommand implements ICommand{
-
+    /**
+     * Base for all commands {@link CommandBase}
+     */
     private CommandBase commandBase;
+    /**
+     * Manager for collection {@link CollectionManager}
+     */
     private CollectionManager collectionManager;
-
+    /**
+     * Constructor for the command
+     * @param commandBase base for commands
+     * @param collectionManager collection manager
+     */
     public RemoveCommand(CommandBase commandBase, CollectionManager collectionManager){
         this.commandBase = commandBase;
         this.collectionManager = collectionManager;
     }
 
+    /**
+     * Command execution
+     * @param str command argument
+     * @return command result
+     * @see CommandBase#remove()
+     * @see CollectionManager#removeElementById(Integer)
+     */
     @Override
     public boolean execute(String str) {
         try{

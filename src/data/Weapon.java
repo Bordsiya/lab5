@@ -1,5 +1,11 @@
 package data;
 
+/**
+ * Field weaponType for class {@link SpaceMarine}
+ * @author NastyaBordun
+ * @version 1.1
+ */
+
 public enum Weapon {
     MELTAGUN,
     BOLT_RIFLE,
@@ -7,6 +13,9 @@ public enum Weapon {
     MULTI_MELTA,
     MISSILE_LAUNCHER;
 
+    /**
+     * Valid weaponType field values printing, class {@link SpaceMarine}
+     */
     public static void printWeapon(){
         System.out.println("Допустимые значения поля weaponType");
         for(Weapon wp : Weapon.values()){

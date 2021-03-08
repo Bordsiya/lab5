@@ -7,16 +7,38 @@ import exceptions.WrongAmountOfElementsInCommandException;
 import utils.CollectionManager;
 import java.util.ArrayList;
 
+/**
+ * Printing command for collection elements with type {@link SpaceMarine}, whose achievements field value starts with the specified substring
+ * @author NastyaBordun
+ * @version 1.1
+ */
+
 public class FilterAchievementsCommand implements ICommand{
-
+    /**
+     * Base for all commands {@link CommandBase}
+     */
     private CommandBase commandBase;
+    /**
+     * Manager for collection {@link CollectionManager}
+     */
     private CollectionManager collectionManager;
-
+    /**
+     * Constructor for the command
+     * @param commandBase base for commands
+     * @param collectionManager collection manager
+     */
     public FilterAchievementsCommand(CommandBase commandBase, CollectionManager collectionManager){
         this.commandBase = commandBase;
         this.collectionManager = collectionManager;
     }
 
+    /**
+     * Command execution
+     * @param str command argument
+     * @return command result
+     * @see CommandBase#filterAchievements()
+     * @see CollectionManager#startsWithAchievements(String)
+     */
     @Override
     public boolean execute(String str) {
         try{

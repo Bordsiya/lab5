@@ -2,15 +2,31 @@ package commands;
 
 import exceptions.WrongAmountOfElementsInCommandException;
 
+/**
+ * Command to display help for available commands
+ * @author NastyaBordun
+ * @version 1.1
+ */
+
 public class HelpCommand implements ICommand{
-
+    /**
+     * Base for all commands {@link CommandBase}
+     */
     private CommandBase commandBase;
-
+    /**
+     * Constructor for the command
+     * @param commandBase base for commands
+     */
     public HelpCommand(CommandBase commandBase){
         this.commandBase = commandBase;
     }
 
-
+    /**
+     * Command execution
+     * @param str command argument
+     * @return command result
+     * @see CommandBase#help()
+     */
     @Override
     public boolean execute(String str) {
         try{

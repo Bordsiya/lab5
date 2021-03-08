@@ -1,30 +1,67 @@
 package data;
 
+/**
+ * Field chapter for class {@link SpaceMarine}
+ * @author NastyaBordun
+ * @version 1.1
+ */
+
 public class Chapter {
+    /**
+     * Chapter name
+     */
     private String name;
+    /**
+     * Chapter world
+     */
     private String world;
 
+    /**
+     * Empty constructor for class {@link Chapter} (for correct Json parsing)
+     * @see Chapter#Chapter(String, String)
+     */
     public Chapter(){
 
     }
 
+    /**
+     * Constructor for class {@link Chapter}
+     * @param name Chapter name
+     * @param world Chapter world
+     */
     public Chapter(String name, String world){
         this.name = name;
         this.world = world;
     }
 
+    /**
+     * Getting field value {@link Chapter#name}
+     * @return {@link Chapter#name}
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Setting field value {@link Chapter#name}
+     * @param name new Chapter name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Getting field value {@link Chapter#world}
+     * @return {@link Chapter#world}
+     */
     public String getWorld(){
         return this.world;
     }
 
+    /**
+     * Setting field value {@link Chapter#world}
+     * @param world new Chapter world
+     */
     public void setWorld(String world) {
         this.world = world;
     }

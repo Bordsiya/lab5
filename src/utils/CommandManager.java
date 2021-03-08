@@ -2,6 +2,12 @@ package utils;
 
 import commands.ICommand;
 
+/**
+ * Class for command announcement
+ * @author NastyaBordun
+ * @version 1.1
+ */
+
 public class CommandManager {
 
     private ICommand help;

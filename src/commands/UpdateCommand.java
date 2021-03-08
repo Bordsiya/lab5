@@ -1,24 +1,62 @@
 package commands;
 
+import data.MeleeWeapon;
 import data.SpaceMarine;
+import data.Weapon;
 import exceptions.IncorrectScriptInputException;
 import exceptions.SpaceMarineNotFoundException;
 import exceptions.WrongAmountOfElementsInCommandException;
 import utils.AskManager;
 import utils.CollectionManager;
 
+/**
+ * The Update Value Command of a Collection Element by ID
+ * @author NastyaBordun
+ * @version 1.1
+ */
+
 public class UpdateCommand implements ICommand{
-
+    /**
+     * Base for all commands {@link CommandBase}
+     */
     private CommandBase commandBase;
+    /**
+     * Manager for collection {@link CollectionManager}
+     */
     private CollectionManager collectionManager;
+    /**
+     * Manager for re-asking {@link AskManager}
+     */
     private AskManager askManager;
-
+    /**
+     * Constructor for the command
+     * @param commandBase base for commands
+     * @param askManager re-asking manager
+     * @param collectionManager collection manager
+     */
     public UpdateCommand(CommandBase commandBase, CollectionManager collectionManager, AskManager askManager){
         this.commandBase = commandBase;
         this.collectionManager = collectionManager;
         this.askManager = askManager;
     }
 
+    /**
+     * Command execution
+     * @param str command argument
+     * @return command result
+     * @see CommandBase#update()
+     * @see CollectionManager#searchById(Integer)
+     * @see AskManager#questionCheck(String)
+     * @see SpaceMarine#setName(String)
+     * @see SpaceMarine#setCoordinateX(long)
+     * @see SpaceMarine#setCoordinateY(Double)
+     * @see SpaceMarine#setHealth(Float)
+     * @see SpaceMarine#setAchievements(String)
+     * @see SpaceMarine#setWeaponType(Weapon)
+     * @see SpaceMarine#setMeleeWeapon(MeleeWeapon)
+     * @see SpaceMarine#setChapterName(String)
+     * @see SpaceMarine#setChapterWorld(String)
+     */
     @Override
     public boolean execute(String str) {
         try{

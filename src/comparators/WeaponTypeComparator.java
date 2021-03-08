@@ -2,6 +2,11 @@ package comparators;
 
 import data.SpaceMarine;
 import java.util.Comparator;
+/**
+ * Comparator for sorting collection in ascending order, with objects {@link SpaceMarine} type, by weaponType field
+ * @author NastyaBordun
+ * @version 1.1
+ */
 
 public class WeaponTypeComparator implements Comparator<SpaceMarine> {
 

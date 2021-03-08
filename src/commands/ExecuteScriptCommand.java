@@ -2,14 +2,31 @@ package commands;
 
 import exceptions.WrongAmountOfElementsInCommandException;
 
+/**
+ * Command for script executing from the certain file
+ * @author NastyaBordun
+ * @version 1.1
+ */
+
 public class ExecuteScriptCommand implements ICommand{
-
+    /**
+     * Base for all commands {@link CommandBase}
+     */
     private CommandBase commandBase;
-
+    /**
+     * Constructor for the command
+     * @param commandBase base for commands
+     */
     public ExecuteScriptCommand(CommandBase commandBase){
         this.commandBase = commandBase;
     }
 
+    /**
+     * Command execution
+     * @param str command argument
+     * @return command result
+     * @see CommandBase#executeScript()
+     */
     @Override
     public boolean execute(String str) {
         try{

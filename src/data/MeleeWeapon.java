@@ -1,5 +1,11 @@
 package data;
 
+/**
+ * Field meleeWeapon for class {@link SpaceMarine}
+ * @author NastyaBordun
+ * @version 1.1
+ */
+
 public enum MeleeWeapon {
     CHAIN_AXE,
     MANREAPER,
@@ -7,6 +13,9 @@ public enum MeleeWeapon {
     POWER_BLADE,
     POWER_FIST;
 
+    /**
+     * Valid meleeWeapon field values printing, class {@link SpaceMarine}
+     */
     public static void printMeleeWeapon(){
         System.out.println("Допустимые значения поля meleeWeapon");
         for(MeleeWeapon wp : MeleeWeapon.values()){

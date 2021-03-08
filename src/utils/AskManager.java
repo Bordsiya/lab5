@@ -5,30 +5,65 @@ import exceptions.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class AskManager {
+/**
+ * Class providing getting correct information from the user
+ * @author NastyaBordun
+ * @version 1.1
+ */
 
+public class AskManager {
+    /**
+     * Reader for interactive mode
+     */
     private BufferedReader bf;
+    /**
+     * Reader for script mode
+     */
     private BufferedReader bf2;
+    /**
+     * Mode (true - interactive; false - script)
+     */
     private boolean interactiveMode;
 
+    /**
+     * Creating Ask Manager
+     * @param bf {@link AskManager#bf}
+     */
     public AskManager(BufferedReader bf){
         this.bf = bf;
         this.interactiveMode = true;
     }
 
+    /**
+     * Changing Interactive Mode to Script Mode
+     * @param bf2 {@link AskManager#bf2}
+     */
     public void toScriptMode(BufferedReader bf2){
         setBf2(bf2);
         setInteractiveMode(false);
     }
 
+    /**
+     * Setting {@link AskManager#bf2}
+     * @param bf2 new Reader
+     */
     private void setBf2(BufferedReader bf2){
         this.bf2 = bf2;
     }
 
+    /**
+     * Setting {@link AskManager#interactiveMode}
+     * @param interactiveMode new mode
+     */
     private void setInteractiveMode(boolean interactiveMode){
         this.interactiveMode = interactiveMode;
     }
 
+    /**
+     * Entering the correct name field of class {@link SpaceMarine}
+     * @return name
+     * @throws IncorrectScriptInputException script cannot be re-asked with incorrect input
+     */
     public String askName() throws IncorrectScriptInputException {
         boolean flag = false;
         String name = null;
@@ -58,11 +93,25 @@ public class AskManager {
         return name;
     }
 
+    /**
+     * Entering the correct coordinates field of class {@link SpaceMarine}
+     * @return coordinates
+     * @throws IncorrectScriptInputException script cannot be re-asked with incorrect input
+     * @see AskManager#askCoordinateX()
+     * @see AskManager#askCoordinateY()
+     */
     public Coordinates askCoordinates() throws IncorrectScriptInputException {
         Coordinates coordinates = new Coordinates(askCoordinateX(), askCoordinateY());
         return coordinates;
     }
 
+    /**
+     * Entering the correct x field of class {@link Coordinates}
+     * @return x
+     * @throws IncorrectScriptInputException script cannot be re-asked with incorrect input
+     * @see AskManager#askCoordinates()
+     * @see AskManager#askCoordinateY()
+     */
     public long askCoordinateX() throws IncorrectScriptInputException {
         boolean flag = false;
         long coordinateX = 0;
@@ -98,6 +147,13 @@ public class AskManager {
         return coordinateX;
     }
 
+    /**
+     * Entering the correct y field of class {@link Coordinates}
+     * @return y
+     * @throws IncorrectScriptInputException script cannot be re-asked with incorrect input
+     * @see AskManager#askCoordinates()
+     * @see AskManager#askCoordinateX()
+     */
     public Double askCoordinateY() throws IncorrectScriptInputException {
         boolean flag = false;
         Double coordinateY = null;
@@ -141,6 +197,11 @@ public class AskManager {
         return coordinateY;
     }
 
+    /**
+     * Entering the correct health field of class {@link SpaceMarine}
+     * @return health
+     * @throws IncorrectScriptInputException script cannot be re-asked with incorrect input
+     */
     public Float askHealth() throws IncorrectScriptInputException {
         boolean flag = false;
         Float health = null;
@@ -186,6 +247,11 @@ public class AskManager {
         return health;
     }
 
+    /**
+     * Entering the correct achievements field of class {@link SpaceMarine}
+     * @return achievements
+     * @throws IncorrectScriptInputException script cannot be re-asked with incorrect input
+     */
     public String askAchievements() throws IncorrectScriptInputException {
         String achievements = null;
         boolean flag = false;
@@ -210,6 +276,12 @@ public class AskManager {
         else return achievements;
     }
 
+    /**
+     * Entering the correct weaponType field of class {@link SpaceMarine}
+     * @return weaponType
+     * @throws IncorrectScriptInputException script cannot be re-asked with incorrect input
+     * @see Weapon#printWeapon()
+     */
     public Weapon askWeaponType() throws IncorrectScriptInputException {
         boolean flag = false;
         Weapon weaponType = null;
@@ -246,6 +318,12 @@ public class AskManager {
         return weaponType;
     }
 
+    /**
+     * Entering the correct meleeWeapon field of class {@link SpaceMarine}
+     * @return meleeWeapon
+     * @throws IncorrectScriptInputException script cannot be re-asked with incorrect input
+     * @see MeleeWeapon#printMeleeWeapon()
+     */
     public MeleeWeapon askMeleeWeapon() throws IncorrectScriptInputException {
         boolean flag = false;
         MeleeWeapon meleeWeapon = null;
@@ -277,11 +355,25 @@ public class AskManager {
         return meleeWeapon;
     }
 
+    /**
+     * Entering the correct chapter field of class {@link SpaceMarine}
+     * @return chapter
+     * @throws IncorrectScriptInputException script cannot be re-asked with incorrect input
+     * @see AskManager#askChapterName()
+     * @see AskManager#askChapterWorld()
+     */
     public Chapter askChapter() throws IncorrectScriptInputException {
         Chapter chapter = new Chapter(askChapterName(), askChapterWorld());
         return chapter;
     }
 
+    /**
+     * Entering the correct name field of class {@link Chapter}
+     * @return name
+     * @throws IncorrectScriptInputException script cannot be re-asked with incorrect input
+     * @see AskManager#askChapter()
+     * @see AskManager#askChapterWorld()
+     */
     public String askChapterName() throws IncorrectScriptInputException {
         boolean flag = false;
         String chapterName = null;
@@ -295,7 +387,7 @@ public class AskManager {
                     chapterName = bf2.readLine().trim().replaceAll("\uFFFD", "");
                 }
                 if(chapterName.length() == 0){
-                    throw new EmptyChapterNameException("Имя name поля chapter не может быть пустым");
+                    throw new EmptyChapterNameException("Поле name класса chapter не может быть пустым");
                 }
                 flag = true;
             }
@@ -312,6 +404,13 @@ public class AskManager {
         return chapterName;
     }
 
+    /**
+     * Entering the correct world field of class {@link Chapter}
+     * @return world
+     * @throws IncorrectScriptInputException script cannot be re-asked with incorrect input
+     * @see AskManager#askChapter()
+     * @see AskManager#askChapterName()
+     */
     public String askChapterWorld() throws IncorrectScriptInputException {
         boolean flag = false;
         String chapterWorld = null;
@@ -325,7 +424,7 @@ public class AskManager {
                     chapterWorld = bf2.readLine().trim().replaceAll("\uFFFD", "");
                 }
                 if(chapterWorld.length() == 0){
-                    throw new EmptyChapterWorldException("Имя world поля chapter не может быть пустым");
+                    throw new EmptyChapterWorldException("Поле world класса chapter не может быть пустым");
                 }
                 flag = true;
             }
@@ -341,6 +440,10 @@ public class AskManager {
         return chapterWorld;
     }
 
+    /**
+     * Entering the correct filePath field of class {@link FileManager}
+     * @return filePath
+     */
     public String askPath(){
         boolean flag = false;
         String path = null;
@@ -366,6 +469,12 @@ public class AskManager {
         return path;
     }
 
+    /**
+     * Deciding which fields user would like to change {@link commands.UpdateCommand}
+     * @param field field for changing
+     * @return user's choice
+     * @throws IncorrectScriptInputException script cannot be re-asked with incorrect input
+     */
     public boolean questionCheck(String field) throws IncorrectScriptInputException {
         while(true){
             try{

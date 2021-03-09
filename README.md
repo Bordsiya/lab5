@@ -1,8 +1,8 @@
 # lab5
 ITMO, 1 course
 
-Path to file SpaceShip.json is in environment variable VAR:
-env
+Path to file SpaceShip.json is in environment variable VAR:\n
+env\n
 export VAR='...'
 
 We can also add to .kshrc:

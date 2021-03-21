@@ -38,7 +38,7 @@ public class AskManager {
      * Changing Interactive Mode to Script Mode
      * @param bf2 {@link AskManager#bf2}
      */
-    public void toScriptMode(BufferedReader bf2){
+    public void addScriptMode(BufferedReader bf2){
         setBf2(bf2);
         setInteractiveMode(false);
     }

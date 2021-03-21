@@ -28,4 +28,4 @@ ffff
 save
 reorder 666
 remove_by_id
-exit
+execute_script script.txt

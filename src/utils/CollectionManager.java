@@ -246,7 +246,7 @@ public class CollectionManager {
     }
 
     /**
-     * Printing command for field weaponType of all collection elements, with types {@link data.SpaceMarine}, in ascending order
+     * Printing command for field weaponType of all collection elements, with types {@link SpaceMarine}, in ascending order
      * @see WeaponTypeComparator
      * @see CollectionManager#printWeaponTypes(Stack)
      * @see CollectionManager#getCollection()
@@ -276,7 +276,7 @@ public class CollectionManager {
         }
     }
     /**
-     * Printing command for field achievements of all collection elements, with types {@link data.SpaceMarine}, in descending order
+     * Printing command for field achievements of all collection elements, with types {@link SpaceMarine}, in descending order
      * @see AchievementsComparator
      * @see CollectionManager#printAchievements(Stack)
      * @see CollectionManager#getCollection()

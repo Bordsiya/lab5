@@ -19,28 +19,13 @@ public class  FileManager {
      */
     private File file;
     /**
-     * Reader for file
-     */
-    private BufferedReader r;
-    /**
      * Manager for file (to get the correct path to the file in bad case)
      */
     private AskManager askManager;
 
     /**
      * Creating file manager (constructor)
-     * @param r Reader for file
      * @param askManager askManager for file
-     * @see FileManager#FileManager(AskManager)
-     */
-    FileManager(BufferedReader r, AskManager askManager){
-        this.r = r;
-        this.askManager = askManager;
-    }
-    /**
-     * Creating file manager (constructor)
-     * @param askManager askManager for file
-     * @see FileManager#FileManager(BufferedReader, AskManager)
      */
     FileManager(AskManager askManager){
         this.askManager = askManager;
@@ -52,6 +37,24 @@ public class  FileManager {
      */
     public File getFile(){
         return this.file;
+    }
+
+    /**
+     * For creating the working file
+     * @see FileManager#uploadEnvPath()
+     * @see FileManager#uploadFile()
+     * @see FileManager#checkRWProperties()
+     * @see FileManager#uploadPath()
+     */
+    public void createHomeFile(){
+        uploadEnvPath();
+        uploadFile();
+        while(!checkRWProperties()){
+            System.out.println("Недостаточно прав доступа, выберите другой файл для взаимодействия");
+            uploadPath();
+            uploadFile();
+        }
+        System.out.println("Файл готов для работы");
     }
 
     /**

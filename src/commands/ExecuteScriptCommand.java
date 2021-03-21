@@ -1,6 +1,7 @@
 package commands;
 
 import exceptions.WrongAmountOfElementsInCommandException;
+import utils.Console;
 
 /**
  * Command for script executing from the certain file
@@ -13,12 +14,15 @@ public class ExecuteScriptCommand implements ICommand{
      * Base for all commands {@link CommandBase}
      */
     private CommandBase commandBase;
+
+    private Console console;
     /**
      * Constructor for the command
      * @param commandBase base for commands
      */
-    public ExecuteScriptCommand(CommandBase commandBase){
+    public ExecuteScriptCommand(CommandBase commandBase, Console console){
         this.commandBase = commandBase;
+        this.console = console;
     }
 
     /**
@@ -35,6 +39,7 @@ public class ExecuteScriptCommand implements ICommand{
             if(str.length() == 0 || commandArr.length != 1){
                 throw new WrongAmountOfElementsInCommandException("Неправильное количество аргументов для команды");
             }
+            console.scriptMode(str, console.isWork());
             return true;
         }
         catch (WrongAmountOfElementsInCommandException e){

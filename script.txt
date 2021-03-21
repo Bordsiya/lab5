@@ -30,6 +30,8 @@ CHAIN_AXE
 1
 Алфея
 info
+execute_script script.txt
 save
 remove_by_id 1
 clear
+exit
